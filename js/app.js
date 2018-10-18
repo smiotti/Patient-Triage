@@ -16,7 +16,8 @@ let patientList = [
   'Paul',
   'Jan',
   'Tri',
-  'Maryam'
+  'Maryam',
+  'Steve'
 
 ]
 
@@ -56,15 +57,14 @@ if (command == 'update') {
   let patientName = prompt('Please select which patient you would like to Delete (case sensitive!):');
   for (let i = 0; i < patientList.length; i++) {
     if (patientList[i] === patientName) {
-      patientList = patientList.splice(0, i);
+      patientList.splice(i,1);
       alert('Here is the update patient list:' + patientList);
     }
-    // else{
-    //   alert("Patient's name is not in this list!");
-    //   break;
-    // }
-  }
 
+  }
+  alert("Patient's name is not in this list!");
+  break;
+    
 
   // If the user types 'add', prompting user for a patient name to add to the list, and displaying the list.
 } else if (command == 'add') {
@@ -83,16 +83,16 @@ if (command == 'update') {
 
   // If the user typed in 'reorder', prompting user for the 2 patient names they want to swith the order for, and then display the list.
 } else if (command == 'reorder') {
-  const patientName1 = prompt('Please select a patient you would like to swap the order for (case sensitive!):');
+  const patientName1 = prompt('Please select a patient you would like to swap the oder for (case sensitive!):');
   const patientName2 = prompt("Please select the second patient's name (case sensitive!):");
   let varIndex1 = 0;
   let varIndex2 = 0;
   for (let i = 0; i < patientList.length; i++) {
     if (patientList[i] === patientName1) {
-      let varIndex1 = i;
+      varIndex1 = i;
     }
     else if (patientList[i] === patientName2) {
-      let varIndex2 = i;
+      varIndex2 = i;
     }
 
     const temp = patientList[varIndex2]
@@ -111,19 +111,5 @@ if (command == 'update') {
 
 
 alert('Thank you for using the patient triage app.');
-
-
-
-
-
-
-//  if (user === 'admin' && password === '1234') {
-//       alert('Welcome to the admin page');
-//     } else if (user === 'average joe' && password === 'js rocks') {
-//       alert('Welcome to the user landing page');
-//     } else {
-//       alert('Invalid username and password. Refresh the page to retry');
-//     }
-
 
 
