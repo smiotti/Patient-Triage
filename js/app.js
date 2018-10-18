@@ -1,38 +1,20 @@
-// Using the `patientList` in the starter code, create all of the following funcionality based on the command 
-// entered by the user:
 
-// 1. If the user typed in 'add', prompt them for a patient name, add that patient to the list, and display the list. 
-
-// 2. If the user typed in 'update', prompt them for a patient name,  prompt them for a new name, update 
-// the name to the new name, and display the list. 
-
-// 3. If the user typed in 'delete', prompt them for a patient name, delete that patient, and display the list.
-
-// 4. If the user typed in 'reorder', prompt them for a patient name, prompt them for another patient name, 
-// switch the two entered patients, and display the list.
-
-
+// Defining the patient list array
 let patientList = [
   'Paul',
   'Jan',
   'Tri',
   'Maryam',
-  'Steve'
-
+  'Jim'
 ]
 
+//Setting a global variable for user input error handling
+let onPatientList = false;
+
+
+// Proving user with the current patient list and then promting them for action.
 alert('Current patient List: ' + patientList);
-
-
-
-
 let command = prompt('What would you like to to do with the patient list, Choose one:    update, delete, add, reorder');
-
-// while the 'cancel' button is not selected...
-// start:
-// while (command != cancel) {
-
-
 
 
 // If the user types 'update', prompting user for the name of the patient to replace with someone else, and then 
@@ -44,12 +26,14 @@ if (command == 'update') {
       let newPatient = prompt('Please enter the name of a new patient:');
       patientList[i] = newPatient;
       alert('Here is the update patient list:' + patientList);
+      onPatientList = true;
     }
-    // else {
-    //   alert("Existing patient's name is not in this list!");
-    //   break;
-    // }
   }
+  // If selected patient name not in the list, alert user.
+  if (onPatientList == false) {
+    alert(patientName + " is not in the patient list!");     
+  }
+  
 
 
   // If the user types 'delete', prompting user for a patient name to delete from the list, and displaying the list.
@@ -59,28 +43,31 @@ if (command == 'update') {
     if (patientList[i] === patientName) {
       patientList.splice(i,1);
       alert('Here is the update patient list:' + patientList);
+      onPatientList = true;
     }
-
   }
-  alert("Patient's name is not in this list!");
-  break;
+  // If selected patient name not in the list, alert user.
+  if (onPatientList == false) {
+    alert(patientName + " is not in the patent list!");   
+  }
     
 
   // If the user types 'add', prompting user for a patient name to add to the list, and displaying the list.
 } else if (command == 'add') {
   let patientName = prompt('Please type the name of the patient you would like to Add (case sensitive!):');
-  for (let i = 0; i < patientList.length; i++)
+  for (let i = 0; i < patientList.length; i++) {
     if (patientList[i] === patientName) {
-      alert('That patient already exists in the list:' + patientName);
+      onPatientList = true;
+      // If new patient name is the same as a petient already on the list, alerting user, and not adding a duplicate value.
+      alert(patientName + ' already exists in the list!');
     }
-    else {
-      patientList.push(patientName);
-      alert('Here is the update patient list:' + patientList);
-      break;
-    }
+  }
+  if (onPatientList == false) {
+    patientList.push(patientName);
+    alert('Here is the update patient list:' + patientList);
+  }
 
-
-
+  
   // If the user typed in 'reorder', prompting user for the 2 patient names they want to swith the order for, and then display the list.
 } else if (command == 'reorder') {
   const patientName1 = prompt('Please select a patient you would like to swap the oder for (case sensitive!):');
@@ -103,13 +90,12 @@ if (command == 'update') {
   alert('Here is the update patient list:' + patientList);
 
 
+  // If user tries to select a menu option not on the list
 } else {
-  alert('You have selected an invalid response');
-  let command = prompt('Choose one: update, delete, add, reorder');
-
+  alert('You have selected an invalid menu response.  Restart program and choose wisely!');
 }
 
-
+  // before dropping out of program display Thank You message
 alert('Thank you for using the patient triage app.');
 
 
