@@ -28,67 +28,88 @@ alert('Current patient List: ' + patientList);
 let command = prompt('What would you like to to do with the patient list, Choose one:    update, delete, add, reorder');
 
 // while the 'cancel' button is not selected...
-start:
-while (command != cancel) {
+// start:
+// while (command != cancel) {
 
 
 
 
-  // If the user types 'update', prompting user for the name of the patient to replace with someone else, and then 
-  // displaying the updated patient list. 
-
-  Loop1:
-  if (command == 'update') {
-    let patientName = prompt('Please select which patient you would like to replace (case sensitive!):'); 
-      for ( let i = 0; i < patientList.length; i++ ) {
-      if (patientList[i] === patientName) {
-        let newPatient = prompt('Please enter the name of a new patient:');
-          patientList[i] = newPatient;
-          alert ('Here is the update patient list:' + patientList);
-        }  
-      else {
-        alert("Existing patient's name is not in this list!");
-        break Loop1;
-      }
-    }
-      
-
-  } else if (command == 'delete')  {
-    console.log('You selected delete');
-    alert('You selected delete');
-    //  let pationList = prompt('What is the name of the patient you want to delete?')
-    //  for()
-
-
-  }  else if (command == 'add')  {
-    let patientName = prompt('Please select which patient you would like to replace (case sensitive!):'); 
-    for ( let i = 0; i < patientList.length; i++ ) {
+// If the user types 'update', prompting user for the name of the patient to replace with someone else, and then 
+// displaying the updated patient list. 
+if (command == 'update') {
+  let patientName = prompt('Please select which patient you would like to Replace (case sensitive!):');
+  for (let i = 0; i < patientList.length; i++) {
     if (patientList[i] === patientName) {
       let newPatient = prompt('Please enter the name of a new patient:');
-        patientList[i] = newPatient;
-        alert ('Here is the update patient list:' + patientList);
-      }  
+      patientList[i] = newPatient;
+      alert('Here is the update patient list:' + patientList);
+    }
+    // else {
+    //   alert("Existing patient's name is not in this list!");
+    //   break;
+    // }
+  }
+
+
+  // If the user types 'delete', prompting user for a patient name to delete from the list, and displaying the list.
+} else if (command == 'delete') {
+  let patientName = prompt('Please select which patient you would like to Delete (case sensitive!):');
+  for (let i = 0; i < patientList.length; i++) {
+    if (patientList[i] === patientName) {
+      patientList = patientList.splice(0, i);
+      alert('Here is the update patient list:' + patientList);
+    }
+    // else{
+    //   alert("Patient's name is not in this list!");
+    //   break;
+    // }
+  }
+
+
+  // If the user types 'add', prompting user for a patient name to add to the list, and displaying the list.
+} else if (command == 'add') {
+  let patientName = prompt('Please type the name of the patient you would like to Add (case sensitive!):');
+  for (let i = 0; i < patientList.length; i++)
+    if (patientList[i] === patientName) {
+      alert('That patient already exists in the list:' + patientName);
+    }
+    else {
+      patientList.push(patientName);
+      alert('Here is the update patient list:' + patientList);
+      break;
     }
 
 
 
+  // If the user typed in 'reorder', prompting user for the 2 patient names they want to swith the order for, and then display the list.
+} else if (command == 'reorder') {
+  const patientName1 = prompt('Please select a patient you would like to swap the order for (case sensitive!):');
+  const patientName2 = prompt("Please select the second patient's name (case sensitive!):");
+  let varIndex1 = 0;
+  let varIndex2 = 0;
+  for (let i = 0; i < patientList.length; i++) {
+    if (patientList[i] === patientName1) {
+      let varIndex1 = i;
+    }
+    else if (patientList[i] === patientName2) {
+      let varIndex2 = i;
+    }
 
-    console.log('You selected add');
-    alert('You selected add');
+    const temp = patientList[varIndex2]
 
-
-  }  else if (command == 'reorder')  {
-    console.log('You selected reorder');
-    alert('You selected reorder');
-
-
-  }  else {
-      alert('You have selected an invalid response');
-      let command = prompt('Choose one: update, delete, add, reorder');
-
+    patientList[varIndex2] = patientList[varIndex1];
+    patientList[varIndex1] = temp;
   }
+  alert('Here is the update patient list:' + patientList);
+
+
+} else {
+  alert('You have selected an invalid response');
+  let command = prompt('Choose one: update, delete, add, reorder');
 
 }
+
+
 alert('Thank you for using the patient triage app.');
 
 
@@ -105,4 +126,4 @@ alert('Thank you for using the patient triage app.');
 //     }
 
 
-    
+
