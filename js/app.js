@@ -1,3 +1,5 @@
+// This patient triage app allows usres to add, delete, update or reorder a patient list. 
+
 
 // Defining the patient list array
 let patientList = [
@@ -8,7 +10,7 @@ let patientList = [
   'Carl'
 ]
 
-//Setting a global variable for user input error handling
+// Setting a global variable for user input error handling
 let onPatientList = false;
 
 
@@ -25,15 +27,14 @@ if (command == 'update') {
     if (patientList[i] === patientName) {
       let newPatient = prompt('Please enter the name of a new patient:');
       patientList[i] = newPatient;
-      alert('Here is the update patient list:' + patientList);
+      alert('Here is the update patient list: ' + patientList);
       onPatientList = true;
     }
   }
   // If selected patient name not in the list, alert user.
   if (onPatientList == false) {
-    alert(patientName + " is not in the patient list!");     
+    alert(patientName + " is not in the patient list!");
   }
-  
 
 
   // If the user types 'delete', prompting user for a patient name to delete from the list, and displaying the list.
@@ -41,16 +42,16 @@ if (command == 'update') {
   let patientName = prompt('Please select which patient you would like to Delete (case sensitive!):');
   for (let i = 0; i < patientList.length; i++) {
     if (patientList[i] === patientName) {
-      patientList.splice(i,1);
-      alert('Here is the update patient list:' + patientList);
+      patientList.splice(i, 1);
+      alert('Here is the update patient list: ' + patientList);
       onPatientList = true;
     }
   }
   // If selected patient name not in the list, alert user.
   if (onPatientList == false) {
-    alert(patientName + " is not in the patent list!");   
+    alert(patientName + " is not in the patent list!");
   }
-    
+
 
   // If the user types 'add', prompting user for a patient name to add to the list, and displaying the list.
 } else if (command == 'add') {
@@ -64,10 +65,10 @@ if (command == 'update') {
   }
   if (onPatientList == false) {
     patientList.push(patientName);
-    alert('Here is the update patient list:' + patientList);
+    alert('Here is the update patient list: ' + patientList);
   }
 
-  
+
   // If the user typed in 'reorder', prompting user for the 2 patient names they want to swith the order for, and then display the list.
 } else if (command == 'reorder') {
   const patientName1 = prompt('Please select a patient you would like to swap the oder for (case sensitive!):');
@@ -84,18 +85,18 @@ if (command == 'update') {
   }
   const temp = patientList[varIndex2]
 
+  // Swapping patient 2 into position 1, and patient 1 into position 2, then displaying update patient list
   patientList[varIndex2] = patientList[varIndex1];
   patientList[varIndex1] = temp;
-  
   alert('Here is the update patient list:' + patientList);
 
 
-  // If user tries to select a menu option not on the list
+  // If user tries to select a invalide menu option.
 } else {
   alert('You have selected an invalid menu response.  Restart program and choose wisely!');
 }
 
-  // before dropping out of program display Thank You message
+// before dropping out of program, display Thank You message
 alert('Thank you for using the patient triage app.');
 
 
