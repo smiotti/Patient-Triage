@@ -5,7 +5,7 @@ let patientList = [
   'Jan',
   'Tri',
   'Maryam',
-  'Jim'
+  'Carl'
 ]
 
 //Setting a global variable for user input error handling
@@ -81,12 +81,12 @@ if (command == 'update') {
     else if (patientList[i] === patientName2) {
       varIndex2 = i;
     }
-
-    const temp = patientList[varIndex2]
-
-    patientList[varIndex2] = patientList[varIndex1];
-    patientList[varIndex1] = temp;
   }
+  const temp = patientList[varIndex2]
+
+  patientList[varIndex2] = patientList[varIndex1];
+  patientList[varIndex1] = temp;
+  
   alert('Here is the update patient list:' + patientList);
 
 
